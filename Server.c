@@ -19,7 +19,7 @@ int main(int args, char *argv[]) {
 	int localerror;
 	struct sockaddr_in myAddr;
 	struct sockaddr_in cliente_addr;
-	socklen_t clienteLen;	
+	socklen_t clienteLen;
 	int status;
 
 	char *cadena;
@@ -66,7 +66,7 @@ int main(int args, char *argv[]) {
 		fprintf(stderr,"Can't listen on socket(%s)\n",strerror(localerror));
 		close(server);
 		return 1;
-	}	
+	}
 
 	//Esperamos una Conexión
 	while(1) {

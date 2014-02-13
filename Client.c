@@ -18,7 +18,7 @@ int main(int args, char *argv[]) {
 	int client;
 	int localerror;
 	struct sockaddr_in server_addr;
-	socklen_t clienteLen;	
+	socklen_t clienteLen;
 	int status;
 	char *cadena;
 
@@ -40,7 +40,7 @@ int main(int args, char *argv[]) {
 	port = atoi(argv[2]);
 
 	bzero(&server_addr,sizeof(server_addr));
-	server_addr.sin_family = AF_INET;		
+	server_addr.sin_family = AF_INET;
 	status = inet_pton(AF_INET,argv[1],&server_addr.sin_addr.s_addr);
 	server_addr.sin_port = htons(port);
 
