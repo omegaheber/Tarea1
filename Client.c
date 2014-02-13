@@ -1,7 +1,3 @@
-/**
-  *
-**/
-
 #include <sys/types.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,6 +6,7 @@
 #include <string.h>
 #include <arpa/inet.h>
 #include <unistd.h>
+#include <time.h>
 
 int main(int args, char *argv[]) {
 
@@ -18,7 +15,7 @@ int main(int args, char *argv[]) {
 	int client;
 	int localerror;
 	struct sockaddr_in server_addr;
-	socklen_t clienteLen;
+	socklen_t clienteLen;	
 	int status;
 	char *cadena;
 
@@ -40,7 +37,7 @@ int main(int args, char *argv[]) {
 	port = atoi(argv[2]);
 
 	bzero(&server_addr,sizeof(server_addr));
-	server_addr.sin_family = AF_INET;
+	server_addr.sin_family = AF_INET;		
 	status = inet_pton(AF_INET,argv[1],&server_addr.sin_addr.s_addr);
 	server_addr.sin_port = htons(port);
 
@@ -51,14 +48,12 @@ int main(int args, char *argv[]) {
 		return 1;
 	}
 
-	printf("Ya me conecte!!!!\n");
+	printf("\nSe ha conectado con el servidor\n");
 
 	cadena = (char *) calloc(1,10);
+	status = read(server,cadena,50);
+	printf("-----La hora y fecha actual es: %s-----\n\n",cadena);
 
-	status = write(server,"Hola\n",5);
-	status = read(server,cadena,10);
-	printf("Nos regreso %s\n",cadena);
-	status = write(server,"Adios\r\n",7);
 	free(cadena);
 	close(server);
 }
